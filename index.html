@@ -1,54 +1,154 @@
-<!-- SECCIÓN DE EXPANSIÓN: CURSO, CANCIONERO Y PROFESOR VIRTUAL -->
-<div id="piano-expansion-app" style="font-family: sans-serif; padding: 20px; background: #121212; color: #fff; border-radius: 12px; max-width: 800px; margin: 20px auto;">
-    
-    <!-- Navegación Superior de Módulos -->
-    <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
-        <button onclick="cambiarModulo('curso')" style="background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">📚 Curso (Nv. 1-5)</button>
-        <button onclick="cambiarModulo('cancionero')" style="background: #374151; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">🎵 Cancionero</button>
-        <button onclick="cambiarModulo('oido')" style="background: #374151; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">👂 Ear Training</button>
-        <button onclick="cambiarModulo('profesor')" style="background: #059669; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">🤖 Profesor Virtual</button>
-    </div>
-
-    <!-- Contenedor Dinámico -->
-    <div id="contenido-modulo">
-        <h3>Bienvenido a la expansión de Piano Fácil 🎹</h3>
-        <p>Selecciona una pestaña arriba para comenzar a explorar el contenido completo, practicar cumbias y rock, o hacerle preguntas a tu tutor virtual.</p>
-    </div>
-
-</div>
-
-<script>
-    function cambiarModulo(tipo) {
-        const contenedor = document.getElementById('contenido-modulo');
-        
-        if (tipo === 'curso') {
-            contenedor.innerHTML = `
-                <h3>📚 Curso Completo de Piano (Niveles 1 al 5)</h3>
-                <ul>
-                    <li><b>Nivel 1:</b> Postura, Teclas Negras, Cifrado Americano y Dedos 1-5.</li>
-                    <li><b>Nivel 2:</b> Inversiones de Acordes y Voice Leading (Enlaces suaves).</li>
-                    <li><b>Nivel 3:</b> Ritmo, Compases (4/4 y 3/4) y Síncopas para mano izquierda.</li>
-                    <li><b>Nivel 4:</b> Escalas Mayores, Pentatónicas e Improvisación.</li>
-                    <li><b>Nivel 5:</b> Acordes Extendidos (9as, maj7), Modulaciones y Pedal de Sustain.</li>
-                </ul>`;
-        } else if (tipo === 'cancionero') {
-            contenedor.innerHTML = `
-                <h3>🎵 Cancionero Ampliado</h3>
-                <p><b>Cumbia Argentina:</b> "Una Cerveza" (Am), "No Te Creas Tan Importante" (C).</p>
-                <p><b>Rock Nacional & Pop:</b> "De Música Ligera" (Bm), "Persiana Americana" (Em), "Let It Be" (C).</p>`;
-        } else if (tipo === 'oido') {
-            contenedor.innerHTML = `
-                <h3>👂 Guías de Entrenamiento Auditivo y Tips</h3>
-                <p>• <b>Intervalos:</b> Aprende a reconocer segundas, terceras y quintas de oído.</p>
-                <p>• <b>Colores de Acordes:</b> Distingue la alegría del Mayor y la melancolía del Menor.</p>
-                <p>• <b>Tip Pro:</b> La velocidad nace de la relajación y el uso correcto del metrónomo.</p>`;
-        } else if (tipo === 'profesor') {
-            contenedor.innerHTML = `
-                <h3>🤖 Profesor Virtual (Tutor IA)</h3>
-                <p>¿Tienes dudas con una inversión o una digitación?</p>
-                <div style="background: #1e1e1e; padding: 10px; border-radius: 6px; margin-top: 10px;">
-                    <p style="color: #10b981; margin: 0;"><b>Tutor:</b> ¡Hola! Estoy listo para ayudarte a practicar hoy. ¿Qué lección o canción te gustaría revisar?</p>
-                </div>`;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Fácil - Completo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-    }
-</script>
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+        .nav-bottom {
+            display: flex;
+            justify-content: space-around;
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+        }
+        .nav-btn.active {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+        .content-card {
+            background: #0f172a;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 10px;
+            min-height: 180px;
+        }
+        h2 { margin-top: 0; font-size: 1.2rem; color: #38bdf8; }
+        ul { padding-left: 20px; font-size: 0.95rem; }
+        li { margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Cabecera -->
+        <div class="header">
+            <div>
+                <h1 style="margin: 0; font-size: 1.3rem;">🎹 Piano Fácil</h1>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <span style="background: #334155; padding: 4px 8px; border-radius: 6px; font-size: 0.85rem;">🔥 1</span>
+                <span style="background: #eab308; color: #000; padding: 4px 8px; border-radius: 6px; font-size: 0.85rem; font-weight: bold;">Nv 1</span>
+            </div>
+        </div>
+
+        <!-- Contenido Dinámico según la pestaña inferior -->
+        <div id="vista-principal" class="content-card">
+            <h2>📚 Camino de Aprendizaje (Curso Nv. 1-5)</h2>
+            <p>Estructura progresiva para dominar el teclado:</p>
+            <ul>
+                <li><b>Nivel 1:</b> Postura, Teclas Negras, Cifrado y Dedos (1-5).</li>
+                <li><b>Nivel 2:</b> Inversiones y Enlaces Suaves de Acordes.</li>
+                <li><b>Nivel 3:</b> Ritmo, Compases y Síncopas (Mano izquierda).</li>
+                <li><b>Nivel 4:</b> Escalas Mayores, Pentatónicas e Improvisación.</li>
+                <li><b>Nivel 5:</b> Acordes Extendidos (9as), Modulaciones y Sustain.</li>
+            </ul>
+        </div>
+
+        <!-- Barra de Navegación Inferior -->
+        <div class="nav-bottom">
+            <button class="nav-btn active" onclick="cambiarVista('camino', this)">
+                <span>🗺️</span> Camino
+            </button>
+            <button class="nav-btn" onclick="cambiarVista('canciones', this)">
+                <span>🎵</span> Canciones
+            </button>
+            <button class="nav-btn" onclick="cambiarVista('acordes', this)">
+                <span>🎹</span> Acordes
+            </button>
+            <button class="nav-btn" onclick="cambiarVista('profesor', this)">
+                <span>🤖</span> Tutor IA
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function cambiarVista(vista, elemento) {
+            // Cambiar estilos de botones
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            elemento.classList.add('active');
+
+            const contenedor = document.getElementById('vista-principal');
+
+            if (vista === 'camino') {
+                contenedor.innerHTML = `
+                    <h2>📚 Camino de Aprendizaje (Curso Nv. 1-5)</h2>
+                    <p>Estructura progresiva para dominar el teclado:</p>
+                    <ul>
+                        <li><b>Nivel 1:</b> Postura, Teclas Negras, Cifrado y Dedos (1-5).</li>
+                        <li><b>Nivel 2:</b> Inversiones y Enlaces Suaves de Acordes.</li>
+                        <li><b>Nivel 3:</b> Ritmo, Compases y Síncopas (Mano izquierda).</li>
+                        <li><b>Nivel 4:</b> Escalas Mayores, Pentatónicas e Improvisación.</li>
+                        <li><b>Nivel 5:</b> Acordes Extendidos (9as), Modulaciones y Sustain.</li>
+                    </ul>`;
+            } else if (vista === 'canciones') {
+                contenedor.innerHTML = `
+                    <h2>🎵 Cancionero Ampliado</h2>
+                    <p><b>🇦🇷 Cumbia Argentina:</b> "Una Cerveza" (Am), "No Te Creas Tan Importante" (C).</p>
+                    <p><b>🎸 Rock Nacional y Pop:</b> "De Música Ligera" (Bm), "Persiana Americana" (Em), "Let It Be" (C).</p>
+                    <p style="font-size: 0.85rem; color: #94a3b8;">* Incluye tips de ritmo y acompañamiento para cada tema.</p>`;
+            } else if (vista === 'acordes') {
+                contenedor.innerHTML = `
+                    <h2>🎹 Panel de Acordes y Ear Training</h2>
+                    <p>• <b>Tipos:</b> Mayor, Menor, Séptima, Disminuido.</p>
+                    <p>• <b>Inversiones:</b> Fundamental, 1ª y 2ª inversión en tiempo real.</p>
+                    <p>• <b>Entrenamiento Auditivo:</b> Aprende a reconocer intervalos y colores de acordes.</p>`;
+            } else if (vista === 'profesor') {
+                contenedor.innerHTML = `
+                    <h2>🤖 Profesor Virtual (Tutor IA)</h2>
+                    <p>¿Tienes dudas con una digitación o una escala?</p>
+                    <div style="background: #1e293b; border: 1px solid #334155; padding: 10px; border-radius: 8px; margin-top: 10px;">
+                        <p style="color: #38bdf8; margin: 0; font-size: 0.9rem;"><b>Tutor:</b> ¡Hola! Pregúntame lo que necesites sobre teoría musical, canciones o cómo practicar tus inversiones hoy.</p>
+                    </div>`;
+            }
+        }
+    </script>
+</body>
+</html>
