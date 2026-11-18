@@ -12,8 +12,9 @@
             --accent-hover: #0ea5e9;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --border-color: #334155;
             --white-key: #ffffff;
-            --black-key: #1e293b;
+            --black-key: #0f172a;
             --active-key: #38bdf8;
         }
 
@@ -50,25 +51,26 @@
             font-size: 0.95rem;
         }
 
-        /* Contenedor Principal */
         .container {
             width: 100%;
             max-width: 800px;
             background: var(--card-bg);
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            margin-bottom: 80px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
         }
 
         /* Pestañas de Navegación */
         .tabs {
             display: flex;
             justify-content: space-around;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.8);
             border-radius: 12px;
             padding: 6px;
             margin-bottom: 20px;
+            border: 1px solid var(--border-color);
         }
 
         .tab-btn {
@@ -77,7 +79,7 @@
             color: var(--text-muted);
             font-size: 0.9rem;
             font-weight: 600;
-            padding: 10px 16px;
+            padding: 10px 14px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -96,7 +98,21 @@
             display: block;
         }
 
-        /* Estilos del Teclado Virtual */
+        /* Tarjetas de Contenido */
+        .content-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        h2 { font-size: 1.25rem; color: var(--accent); margin-bottom: 10px; }
+        h3 { font-size: 1.05rem; color: #10b981; margin-bottom: 6px; }
+        p, li { font-size: 0.92rem; color: var(--text-muted); line-height: 1.5; }
+        ul { padding-left: 18px; }
+        
+        /* Teclado Virtual Interactivo */
         .piano-container {
             display: flex;
             justify-content: center;
@@ -130,7 +146,7 @@
             background: var(--black-key);
             color: #94a3b8;
             width: 28px;
-            height: 100px;
+            height: 105px;
             position: absolute;
             z-index: 2;
             border-radius: 0 0 4px 4px;
@@ -142,27 +158,26 @@
             color: var(--bg-dark) !important;
         }
 
-        /* Controles y Herramientas */
+        /* Controles Acordes */
         .control-group {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .control-group label {
             display: block;
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         select, button.action-btn {
             width: 100%;
             padding: 12px;
             border-radius: 8px;
-            border: 1px solid #334155;
-            background: #0f172a;
+            border: 1px solid var(--border-color);
+            background: var(--bg-dark);
             color: var(--text-main);
             font-size: 1rem;
-            margin-bottom: 12px;
             cursor: pointer;
         }
 
@@ -171,37 +186,12 @@
             color: var(--bg-dark);
             font-weight: bold;
             border: none;
+            margin-top: 10px;
             transition: background 0.2s;
         }
 
         button.action-btn:hover {
             background: var(--accent-hover);
-        }
-
-        .info-card {
-            background: rgba(15, 23, 42, 0.4);
-            border-left: 4px solid var(--accent);
-            padding: 14px;
-            border-radius: 0 8px 8px 0;
-            margin-top: 15px;
-        }
-
-        .song-item {
-            background: #0f172a;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #334155;
-        }
-
-        .song-item h4 {
-            color: var(--accent);
-            margin-bottom: 4px;
-        }
-
-        .song-item p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
         }
     </style>
 </head>
@@ -209,7 +199,7 @@
 
     <header>
         <h1>🎹 Piano Fácil Pro</h1>
-        <p>Aprende acordes, teoría y canciones interactivas paso a paso</p>
+        <p>Conservatorio Completo & Herramientas Interactivas</p>
     </header>
 
     <div class="container">
@@ -221,58 +211,91 @@
             <button class="tab-btn" onclick="switchTab(event, 'libre')">✨ Libre</button>
         </div>
 
-        <!-- PESTAÑA 1: CAMINO (Niveles) -->
+        <!-- PESTAÑA 1: CAMINO (Niveles del 1 al 5) -->
         <div id="camino" class="tab-content active">
-            <h2>Ruta de Aprendizaje</h2>
-            <p style="color: var(--text-muted); margin: 8px 0 16px 0;">Sigue estos niveles para dominar el teclado desde cero.</p>
+            <h2>📚 Camino de Aprendizaje (Niveles 1 al 5)</h2>
+            <p style="margin-bottom: 14px;">Estructura pedagógica completa para avanzar desde cero hasta nivel avanzado:</p>
             
-            <div class="song-item">
-                <h4>Nivel 1: Fundamentos y Teclas</h4>
-                <p>Reconocimiento de teclas blancas, negras y postura correcta en el piano.</p>
+            <div class="content-card">
+                <h3>Nivel 1: Fundamentos</h3>
+                <ul>
+                    <li><b>Postura y Manos:</b> Posición correcta en la banqueta y curvatura de los dedos (1 a 5).</li>
+                    <li><b>Teclas Negras:</b> Reconocimiento de los grupos de 2 y 3 negras para orientarse.</li>
+                    <li><b>Cifrado Americano:</b> Letras universales ($\text{C}, \text{D}, \text{E}, \text{F}, \text{G}, \text{A}, \text{B}$).</li>
+                </ul>
             </div>
-            <div class="song-item">
-                <h4>Nivel 2: Cifrado Americano</h4>
-                <p>Aprende las letras universales de los acordes: C, D, E, F, G, A, B.</p>
+
+            <div class="content-card">
+                <h3>Nivel 2: Inversiones y Armonía</h3>
+                <ul>
+                    <li><b>Inversiones de Acordes:</b> Tocar tríadas moviendo la nota inferior arriba para ahorrar movimiento.</li>
+                    <li><b>Voice Leading:</b> Enlaces suaves entre acordes de una progresión.</li>
+                </ul>
             </div>
-            <div class="song-item">
-                <h4>Nivel 3: Inversiones y Enlaces</h4>
-                <p>Toca tríadas moviendo la nota inferior arriba para ahorrar movimiento.</p>
+
+            <div class="content-card">
+                <h3>Nivel 3: Ritmo y Síncopas</h3>
+                <ul>
+                    <li><b>Compases de 4/4 y 3/4:</b> El pulso y la marcación rítmica fundamental.</li>
+                    <li><b>Acompañamiento Tropical:</b> Patrones de mano izquierda para cumbia y pop bailable.</li>
+                </ul>
             </div>
-            <div class="song-item">
-                <h4>Nivel 4: Ritmos y Acompañamiento Tropical</h4>
-                <p>Patrones de mano izquierda para acompañar cumbias y pop bailable.</p>
+
+            <div class="content-card">
+                <h3>Nivel 4: Improvisación y Escalas</h3>
+                <ul>
+                    <li><b>Escala Mayor:</b> Patrón de tonos y semitonos ($\text{T-T-S-T-T-T-S}$).</li>
+                    <li><b>Pentatónicas:</b> Las 5 notas infalibles para crear melodías sin errores.</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h3>Nivel 5: Avanzado y Expresión</h3>
+                <ul>
+                    <li><b>Acordes Extendidos:</b> Novenas ($\text{9}$) y séptimas mayores ($\text{maj7}$).</li>
+                    <li><b>Uso del Pedal de Sustain:</b> Cuándo pisar y levantar para limpiar la armonía.</li>
+                </ul>
             </div>
         </div>
 
         <!-- PESTAÑA 2: CANCIONES -->
         <div id="canciones" class="tab-content">
-            <h2>Guía de Canciones para Practicar</h2>
-            <p style="color: var(--text-muted); margin: 8px 0 16px 0;">Toca estos éxitos reales aplicando las progresiones aprendidas.</p>
+            <h2>🎵 Cancionero Ampliado</h2>
+            <p style="margin-bottom: 14px;">Repertorio práctico con cumbias argentinas, rock nacional y pop:</p>
             
-            <div class="song-item">
-                <h4>🇦🇷 "Una Cerveza" — Ráfaga</h4>
-                <p><strong>Tonalidad:</strong> Am | <strong>Acordes:</strong> Am - Dm - G - C</p>
-                <p style="font-size:0.85rem; margin-top:4px;">Ideal para practicar el ritmo tropical en mano izquierda.</p>
+            <div class="content-card">
+                <h3>🇦🇷 "Una Cerveza" — Ráfaga (Cumbia)</h3>
+                <p><b>Tonalidad:</b> La menor (Am)</p>
+                <p><b>Progresión:</b> Am - Dm - G - C</p>
+                <p style="font-size: 0.85rem; margin-top: 4px;">* Tip: Mano izquierda con bajo sincopado marcando los tiempos débiles.</p>
             </div>
 
-            <div class="song-item">
-                <h4>🇦🇷 "No Te Creas Tan Importante" — Damas Gratis</h4>
-                <p><strong>Tonalidad:</strong> C | <strong>Acordes:</strong> C - Am - F - G</p>
-                <p style="font-size:0.85rem; margin-top:4px;">Progresión clásica de cuatro acordes muy sencilla y divertida.</p>
+            <div class="content-card">
+                <h3>🇦🇷 "No Te Creas Tan Importante" — Damas Gratis (Cumbia)</h3>
+                <p><b>Tonalidad:</b> Do mayor (C)</p>
+                <p><b>Progresión:</b> C - Am - F - G</p>
             </div>
 
-            <div class="song-item">
-                <h4>🎸 "De Música Ligera" — Soda Stereo</h4>
-                <p><strong>Tonalidad:</strong> Bm | <strong>Acordes:</strong> Bm - G - D - A</p>
+            <div class="content-card">
+                <h3>🎸 "De Música Ligera" — Soda Stereo (Rock Nacional)</h3>
+                <p><b>Tonalidad:</b> Si menor (Bm)</p>
+                <p><b>Progresión:</b> Bm - G - D - A</p>
+            </div>
+
+            <div class="content-card">
+                <h3>🎸 "Let It Be" — The Beatles (Pop / Rock)</h3>
+                <p><b>Tonalidad:</b> Do mayor (C)</p>
+                <p><b>Progresión:</b> F - C - G - Am</p>
             </div>
         </div>
 
         <!-- PESTAÑA 3: ACORDES -->
         <div id="acordes" class="tab-content">
-            <h2>Biblioteca Interactiva de Acordes</h2>
+            <h2>🎼 Biblioteca Interactiva de Acordes</h2>
+            <p style="margin-bottom: 14px;">Selecciona un acorde para ver su estructura y escucharlo:</p>
             
             <div class="control-group">
-                <label>Selecciona la Nota Base:</label>
+                <label>Nota Base:</label>
                 <select id="rootNote" onchange="updateChordDisplay()">
                     <option value="Do">Do (C)</option>
                     <option value="Re">Re (D)</option>
@@ -285,7 +308,7 @@
             </div>
 
             <div class="control-group">
-                <label>Tipo de Acorde:</label>
+                <label>Tipo:</label>
                 <select id="chordType" onchange="updateChordDisplay()">
                     <option value="Mayor">Mayor</option>
                     <option value="Menor">Menor</option>
@@ -293,33 +316,30 @@
                 </select>
             </div>
 
-            <div class="info-card">
-                <h3 id="chordTitle" style="color: var(--accent); margin-bottom: 6px;">Acorde de Do Mayor</h3>
-                <p id="chordNotes" style="font-size: 1.1rem; font-weight: bold;">Notas: Do, Mi, Sol</p>
+            <div class="content-card" style="text-align: center; background: rgba(56, 189, 248, 0.05); border-color: var(--accent);">
+                <h3 id="chordTitle" style="color: var(--accent);">Acorde de Do Mayor</h3>
+                <p id="chordNotes" style="font-size: 1.1rem; font-weight: bold; color: var(--text-main);">Notas: Do, Mi, Sol</p>
             </div>
 
-            <button class="action-btn" style="margin-top: 15px;" onclick="playCurrentChordSound()">🔊 Escuchar Acorde</button>
+            <button class="action-btn" onclick="playCurrentChordSound()">🔊 Escuchar Acorde en Vivo</button>
         </div>
 
-        <!-- PESTAÑA 4: LIBRE (Teclado Interactivo) -->
+        <!-- PESTAÑA 4: LIBRE (Teclado) -->
         <div id="libre" class="tab-content">
-            <h2>Teclado Libre</h2>
-            <p style="color: var(--text-muted); margin-bottom: 10px;">Toca con el ratón o usa tu teclado de PC (A, S, D, F... para blancas).</p>
+            <h2>✨ Teclado Libre Interactivo</h2>
+            <p style="margin-bottom: 10px;">Haz clic en las teclas o usa tu teclado de PC (A, S, D, F... para blancas).</p>
             
             <div class="piano-container" id="pianoKeyboard">
-                <!-- Teclado generado por JS -->
+                <!-- Generado por JavaScript -->
             </div>
         </div>
     </div>
 
     <script>
-        // Sistema de Pestañas Funcionales
+        // Cambio de Pestañas
         function switchTab(evt, tabName) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(c => c.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
 
             document.getElementById(tabName).classList.add('active');
             evt.currentTarget.classList.add('active');
@@ -329,28 +349,25 @@
             }
         }
 
-        // Sintetizador de Audio Web (Sin archivos externos)
+        // Sintetizador Web Audio
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq) {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = 'sine';
             osc.frequency.value = freq;
             
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+            gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.0);
 
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             
             osc.start();
-            osc.stop(audioCtx.currentTime + 1.2);
+            osc.stop(audioCtx.currentTime + 1.0);
         }
 
-        // Frecuencias de notas (Escala Do4 a Do5)
         const notesMap = {
             'C4': 261.63, 'Db4': 277.18, 'D4': 293.66, 'Eb4': 311.13, 'E4': 329.63,
             'F4': 349.23, 'Gb4': 369.99, 'G4': 392.00, 'Ab4': 415.30, 'A4': 440.00,
@@ -363,23 +380,22 @@
             'u': 'Bb4', 'j': 'B4', 'k': 'C5'
         };
 
-        // Renderizar el teclado interactivo en pestaña Libre
         function renderKeyboard() {
             const container = document.getElementById('pianoKeyboard');
-            if (container.children.length > 0) return; // Ya renderizado
+            if (container.children.length > 0) return;
 
             const keysData = [
                 {note: 'C4', type: 'white', label: 'A'},
-                {note: 'Db4', type: 'black', label: 'W', left: 30},
+                {note: 'Db4', type: 'black', label: 'W', left: 32},
                 {note: 'D4', type: 'white', label: 'S'},
-                {note: 'Eb4', type: 'black', label: 'E', left: 72},
+                {note: 'Eb4', type: 'black', label: 'E', left: 74},
                 {note: 'E4', type: 'white', label: 'D'},
                 {note: 'F4', type: 'white', label: 'F'},
-                {note: 'Gb4', type: 'black', label: 'T', left: 156},
+                {note: 'Gb4', type: 'black', label: 'T', left: 158},
                 {note: 'G4', type: 'white', label: 'G'},
-                {note: 'Ab4', type: 'black', label: 'Y', left: 198},
+                {note: 'Ab4', type: 'black', label: 'Y', left: 200},
                 {note: 'A4', type: 'white', label: 'H'},
-                {note: 'Bb4', type: 'black', label: 'U', left: 240},
+                {note: 'Bb4', type: 'black', label: 'U', left: 242},
                 {note: 'B4', type: 'white', label: 'J'},
                 {note: 'C5', type: 'white', label: 'K'}
             ];
@@ -400,7 +416,6 @@
             });
         }
 
-        // Evento para tocar con el teclado del computador
         window.addEventListener('keydown', (e) => {
             const noteKey = keyMappingPC[e.key.toLowerCase()];
             if (noteKey && notesMap[noteKey]) {
@@ -408,7 +423,7 @@
             }
         });
 
-        // Actualizar Biblioteca de Acordes
+        // Base de Datos de Acordes
         const chordDatabase = {
             "Do-Mayor": { name: "Do Mayor", notes: "Do, Mi, Sol", freqs: [261.63, 329.63, 392.00] },
             "Do-Menor": { name: "Do Menor", notes: "Do, Mi♭, Sol", freqs: [261.63, 311.13, 392.00] },
@@ -437,7 +452,6 @@
             const root = document.getElementById('rootNote').value;
             const type = document.getElementById('chordType').value;
             const key = `${root}-${type}`;
-            
             const chord = chordDatabase[key] || { name: `${root} ${type}`, notes: "Notas principales" };
             
             document.getElementById('chordTitle').innerText = `Acorde de ${chord.name}`;
