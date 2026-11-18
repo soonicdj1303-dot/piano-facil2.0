@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Piano Fácil Pro — Academia Interactiva</title>
+  <title>Conservatorio Pro — Academia de Piano Total</title>
   <style>
     :root {
-      --bg: #0f111a;
-      --surface: #1a1d2d;
-      --surface-light: #252940;
+      --bg: #0b0d17;
+      --surface: #151828;
+      --surface-light: #21263d;
       --primary: #6c5ce7;
       --primary-glow: rgba(108, 92, 231, 0.4);
       --right-hand: #ff9f43;
@@ -52,7 +52,7 @@
 
     /* XP BAR */
     .xp-bar-container { width: 100%; height: 4px; background: var(--surface-light); }
-    .xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--success)); width: 20%; transition: width 0.4s ease; }
+    .xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--success)); width: 15%; transition: width 0.4s ease; }
 
     /* MAIN VIEWPORT */
     main { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
@@ -72,6 +72,7 @@
     .tag.theory { background: rgba(108, 92, 231, 0.25); color: #a29bfe; }
     .tag.hands { background: rgba(0, 210, 211, 0.2); color: var(--left-hand); }
     .tag.song { background: rgba(255, 159, 67, 0.2); color: var(--right-hand); }
+    .tag.ear { background: rgba(254, 202, 87, 0.2); color: #feca57; }
 
     button {
       background: var(--surface-light);
@@ -103,11 +104,11 @@
     .hand-legend { display: flex; gap: 12px; font-size: 0.8rem; }
     .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; }
 
-    /* FALLING NOTES CANVAS (GUITAR HERO / SYNTHESIA MODE) */
+    /* FALLING NOTES CANVAS (SYNTHESIA ENGINE) */
     .game-container {
       position: relative;
       width: 100%;
-      height: 190px;
+      height: 200px;
       background: #090a10;
       border-radius: 12px;
       overflow: hidden;
@@ -125,20 +126,20 @@
 
     /* PIANO KEYBOARD */
     .piano-wrapper {
-      background: #131520;
+      background: #11131d;
       padding: 10px 8px 14px;
       border-top: 1px solid rgba(255,255,255,0.1);
       position: relative;
     }
     .piano-toolbar {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 8px; padding: 0 4px; font-size: 0.8rem; color: var(--text-muted);
+      margin-bottom: 8px; padding: 0 4px; font-size: 0.78rem; color: var(--text-muted);
     }
     .keyboard {
       position: relative;
       height: 145px;
       display: flex;
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
       touch-action: none;
     }
@@ -155,7 +156,7 @@
       align-items: center;
       padding-bottom: 8px;
       color: #495057;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       cursor: pointer;
       transition: background 0.06s;
@@ -166,13 +167,13 @@
 
     .key-black {
       position: absolute;
-      width: 5.2%;
+      width: 4.8%;
       height: 58%;
       background: linear-gradient(180deg, #2d3436 0%, #000 100%);
       border-radius: 0 0 6px 6px;
       z-index: 2;
       color: #dfe6e9;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -185,7 +186,7 @@
     .key-black.hint-right { background: var(--right-hand); color: #000; }
     .key-black.hint-left { background: var(--left-hand); color: #000; }
 
-    .kbd-shortcut { font-size: 0.62rem; opacity: 0.55; margin-bottom: 2px; }
+    .kbd-shortcut { font-size: 0.58rem; opacity: 0.55; margin-bottom: 2px; }
 
     /* BOTTOM NAVIGATION */
     nav {
@@ -202,51 +203,51 @@
       flex-direction: column;
       align-items: center;
       gap: 3px;
-      font-size: 0.75rem;
+      font-size: 0.73rem;
       color: var(--text-muted);
       padding: 6px 2px;
     }
     nav button.active { color: var(--primary); font-weight: 800; }
-    nav button span.icon { font-size: 1.25rem; }
+    nav button span.icon { font-size: 1.2rem; }
 
     .grid-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
-    .achievements { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
-    .ach-card { background: var(--surface-light); padding: 10px; border-radius: 12px; font-size: 0.8rem; opacity: 0.45; }
+    .achievements { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+    .ach-card { background: var(--surface-light); padding: 10px; border-radius: 12px; font-size: 0.78rem; opacity: 0.45; }
     .ach-card.unlocked { opacity: 1; border: 1px solid var(--success); }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="brand">🎹 Piano Fácil <span style="font-size:0.7rem;background:var(--primary);padding:2px 6px;border-radius:6px;">PRO</span></div>
+    <div class="brand">🎹 Conservatorio Pro</div>
     <div class="stats">
-      <div class="badge streak" title="Racha diaria">🔥 <span id="streakVal">1</span></div>
-      <div class="badge xp" title="Nivel y Experiencia">⭐ Nv <span id="lvlVal">1</span> (<span id="xpVal">0</span> XP)</div>
+      <div class="badge streak" title="Racha">🔥 <span id="streakVal">1</span></div>
+      <div class="badge xp" title="Nivel y XP">⭐ Nv <span id="lvlVal">1</span> (<span id="xpVal">0</span> XP)</div>
       <div class="midi-status" id="midiStatus" onclick="initMIDI()">🔌 Conectar MIDI</div>
     </div>
   </header>
   <div class="xp-bar-container"><div class="xp-bar-fill" id="xpBar"></div></div>
 
   <main>
-    <!-- ACTIVE LESSON / EXERCISE PANEL -->
+    <!-- LESSON BANNER -->
     <div class="lesson-panel" id="lessonPanel">
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <strong id="lessonTitle" style="font-size:1rem;">Lección</strong>
         <button class="chip" onclick="closeLesson()">✕ Salir</button>
       </div>
-      <p id="lessonDesc" style="font-size:0.88rem;color:var(--text-muted);"></p>
+      <p id="lessonDesc" style="font-size:0.86rem;color:var(--text-muted);"></p>
       <div class="hand-legend">
-        <span><i class="dot" style="background:var(--left-hand)"></i>Mano Izquierda (Graves)</span>
-        <span><i class="dot" style="background:var(--right-hand)"></i>Mano Derecha (Agudos)</span>
+        <span><i class="dot" style="background:var(--left-hand)"></i>M. Izquierda (Graves)</span>
+        <span><i class="dot" style="background:var(--right-hand)"></i>M. Derecha (Agudos)</span>
       </div>
       <div id="lessonFeedback" style="font-weight:700;color:var(--success);font-size:0.9rem;"></div>
       <div style="display:flex;gap:8px;">
-        <button class="chip primary" onclick="playLessonDemo()">🔊 Escuchar ejemplo</button>
+        <button class="chip primary" onclick="playLessonDemo()">🔊 Escuchar guía</button>
         <button class="chip" onclick="resetLessonStep()">🔄 Reiniciar paso</button>
       </div>
     </div>
 
-    <!-- FALLING NOTES GAME CANVAS -->
+    <!-- FALLING NOTES GAME -->
     <div class="game-container" id="gameContainer">
       <canvas id="noteCanvas"></canvas>
       <div class="game-hud">
@@ -259,92 +260,93 @@
       </div>
     </div>
 
-    <!-- TAB 1: CAMINO DE APRENDIZAJE (TEORÍA + AMBAS MANOS) -->
+    <!-- TAB 1: CAMINO ACADÉMICO -->
     <section id="tab-camino" class="tab-content active">
       <div style="display:flex;justify-content:space-between;align-items:center;">
-        <h2>🗺️ Tu Camino Musical</h2>
-        <span style="font-size:0.8rem;color:var(--text-muted);">Paso a paso desde cero</span>
+        <h2>🗺️ Plan de Estudios Integral</h2>
+        <span style="font-size:0.8rem;color:var(--text-muted);">Teoría, Técnica y Práctica</span>
       </div>
       <div id="lessonsList" style="display:flex;flex-direction:column;gap:12px;"></div>
     </section>
 
-    <!-- TAB 2: CANCIONERO INTERACTIVO (CAÍDA DE NOTAS) -->
+    <!-- TAB 2: CANCIONERO GIGANTE -->
     <section id="tab-canciones" class="tab-content">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-        <h2>🎵 Cancionero Interactivo</h2>
+        <h2>🎵 Repertorio Masivo</h2>
         <div style="display:flex;align-items:center;gap:6px;font-size:0.82rem;">
-          <label>Velocidad:</label>
+          <label>Tempo:</label>
           <select id="speedSelect" style="background:var(--surface-light);color:#fff;border:none;padding:5px 8px;border-radius:8px;">
-            <option value="0.65">🐢 Práctica (65%)</option>
-            <option value="1" selected>🎹 Normal (100%)</option>
-            <option value="1.25">🔥 Rápido (125%)</option>
+            <option value="0.6">🐢 Lento (60%)</option>
+            <option value="0.8">🚶 Moderado (80%)</option>
+            <option value="1" selected>🎹 Real (100%)</option>
+            <option value="1.2">🚀 Virtuoso (120%)</option>
           </select>
         </div>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-muted);">Toca las notas justo cuando lleguen al teclado. Azul = Mano Izquierda, Naranja = Mano Derecha.</p>
+      <p style="font-size:0.84rem;color:var(--text-muted);">Toca con tu teclado de PC o conecta tu piano real por USB para practicar estas piezas.</p>
       <div id="songsList" style="display:flex;flex-direction:column;gap:10px;"></div>
     </section>
 
-    <!-- TAB 3: BIBLIOTECA DE ACORDES E INVERSIONES -->
-    <section id="tab-acordes" class="tab-content">
-      <h2>🎼 Explorador de Acordes</h2>
+    <!-- TAB 3: ENTRENAMIENTO DE OÍDO & RITMOS -->
+    <section id="tab-oido" class="tab-content">
+      <h2>🎧 Entrenamiento Auditivo y Ritmos</h2>
       <div class="card">
-        <div style="font-size:0.85rem;color:var(--text-muted);">Nota Base</div>
-        <div class="grid-chips" id="rootChips"></div>
+        <h3 style="font-size:0.95rem;margin-bottom:6px;">Entrenador de Intervalos y Acordes</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;">Escucha el ejercicio y adivina la nota o acorde tocando la tecla correcta.</p>
+        <div id="earFeedback" style="font-weight:700;color:var(--primary);margin-bottom:8px;">Pulsa "Generar Reto" para comenzar</div>
+        <button class="primary" onclick="startEarTraining()">🎯 Nuevo Reto Auditivo</button>
+      </div>
 
-        <div style="font-size:0.85rem;color:var(--text-muted);">Tipo de Acorde</div>
-        <div class="grid-chips" id="typeChips"></div>
-
-        <div style="font-size:0.85rem;color:var(--text-muted);">Inversión (Posición de los dedos)</div>
-        <div class="grid-chips" id="invChips"></div>
-
-        <div style="background:var(--surface-light);padding:12px;border-radius:12px;margin-top:8px;">
-          <div id="chordNameDisplay" style="font-weight:800;font-size:1.05rem;color:var(--right-hand);">Do Mayor</div>
-          <div id="chordNotesDisplay" style="font-size:0.85rem;color:var(--text-muted);margin-top:2px;">Notas: Do - Mi - Sol</div>
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:12px;">
-          <button class="primary" style="flex:1;" onclick="playCurrentChord(false)">🎹 Tocar Acorde</button>
-          <button style="flex:1;" onclick="playCurrentChord(true)">🎶 Arpegio (Una a una)</button>
+      <div class="card">
+        <h3 style="font-size:0.95rem;margin-bottom:6px;">Guía de Ritmos de Acompañamiento</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;">Patrones clásicos para mano izquierda con acordes:</p>
+        <div class="grid-chips" id="rhythmChips"></div>
+        <div id="rhythmDesc" style="font-size:0.82rem;color:var(--text-muted);margin-top:6px;background:var(--surface-light);padding:10px;border-radius:8px;">
+          Selecciona un ritmo para ver la explicación y patrón de dedos.
         </div>
       </div>
     </section>
 
-    <!-- TAB 4: PROGRESO, LOGROS E INVESTIGACIÓN -->
-    <section id="tab-libre" class="tab-content">
-      <h2>🏆 Progreso y Práctica Libre</h2>
+    <!-- TAB 4: ACORDES Y PROGRESO -->
+    <section id="tab-acordes" class="tab-content">
+      <h2>🎼 Laboratorio Armónico y Progreso</h2>
       <div class="card">
-        <h3 style="font-size:0.95rem;margin-bottom:10px;">Logros Desbloqueados</h3>
-        <div class="achievements" id="achievementsGrid"></div>
-      </div>
+        <div style="font-size:0.84rem;color:var(--text-muted);">Nota Base</div>
+        <div class="grid-chips" id="rootChips"></div>
 
-      <div class="card">
-        <h3 style="font-size:0.95rem;margin-bottom:6px;">⚙️ Configuración del Piano</h3>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
-          <button class="chip" onclick="toggleNotation()">Notación: <strong id="notationLabel">Do Re Mi</strong></button>
-          <button class="chip" onclick="toggleLabels()">Etiquetas: <strong id="labelsLabel">Visibles</strong></button>
-          <button class="chip" onclick="toggleMetronome()">Metrónomo: <strong id="metroLabel">OFF</strong></button>
+        <div style="font-size:0.84rem;color:var(--text-muted);">Tipo de Acorde</div>
+        <div class="grid-chips" id="typeChips"></div>
+
+        <div style="font-size:0.84rem;color:var(--text-muted);">Inversión</div>
+        <div class="grid-chips" id="invChips"></div>
+
+        <div style="background:var(--surface-light);padding:12px;border-radius:12px;margin-top:8px;">
+          <div id="chordNameDisplay" style="font-weight:800;font-size:1rem;color:var(--right-hand);">Do Mayor</div>
+          <div id="chordNotesDisplay" style="font-size:0.82rem;color:var(--text-muted);margin-top:2px;">Notas: Do - Mi - Sol</div>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="primary" style="flex:1;" onclick="playCurrentChord(false)">🎹 Tocar Acorde</button>
+          <button style="flex:1;" onclick="playCurrentChord(true)">🎶 Arpegio</button>
         </div>
       </div>
 
       <div class="card">
-        <h3 style="font-size:0.95rem;margin-bottom:6px;">📊 Datos de Estudio e Investigación</h3>
-        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;">
-          Registra precisión de notas, lecciones completadas y tiempos de práctica local para tu análisis pedagógico.
-        </p>
-        <div style="display:flex;gap:8px;">
-          <button class="primary" onclick="exportResearchData()">📥 Descargar JSON de Sesión</button>
-          <button onclick="resetAllProgress()" style="color:var(--danger);">🗑️ Reiniciar Progreso</button>
+        <h3 style="font-size:0.95rem;margin-bottom:8px;">🏆 Logros y Estadísticas</h3>
+        <div class="achievements" id="achievementsGrid"></div>
+        <div style="display:flex;gap:8px;margin-top:12px;">
+          <button class="chip" onclick="exportResearchData()">📥 Descargar JSON de Progreso</button>
+          <button class="chip" onclick="toggleNotation()">Notación: <strong id="notationLabel">Do Re Mi</strong></button>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- INTERACTIVE 2-OCTAVE KEYBOARD (C3 to C5 for Left & Right Hand Practice) -->
+  <!-- KEYBOARD (30 Keys: C3 to F5 for Advanced Two-Hand Practice) -->
   <div class="piano-wrapper">
     <div class="piano-toolbar">
-      <span>👈 Mano Izq (Do3–Si3) | Mano Der (Do4–Do5) 👉</span>
-      <span id="activeNoteDisplay" style="color:var(--primary);font-weight:700;">Listo para tocar</span>
+      <span>👈 Mano Izquierda (Graves) | Mano Derecha (Agudos) 👉</span>
+      <span id="activeNoteDisplay" style="color:var(--primary);font-weight:700;">Listo</span>
     </div>
     <div class="keyboard" id="keyboard"></div>
   </div>
@@ -352,12 +354,12 @@
   <nav>
     <button class="active" onclick="switchTab('camino', this)"><span class="icon">🗺️</span>Camino</button>
     <button onclick="switchTab('canciones', this)"><span class="icon">🎵</span>Canciones</button>
+    <button onclick="switchTab('oido', this)"><span class="icon">🎧</span>Oído y Ritmos</button>
     <button onclick="switchTab('acordes', this)"><span class="icon">🎼</span>Acordes</button>
-    <button onclick="switchTab('libre', this)"><span class="icon">🏆</span>Progreso</button>
   </nav>
 
   <script>
-    // ================= AUDIO ENGINE (WEB AUDIO API) =================
+    // ================= AUDIO ENGINE =================
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     let ctx = null;
     function ensureAudio() {
@@ -378,7 +380,7 @@
       osc2.frequency.setValueAtTime(freq * 2, ctx.currentTime);
 
       gain.gain.setValueAtTime(0.001, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.32, ctx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.3, ctx.currentTime + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.0008, ctx.currentTime + duration);
 
       const subGain = ctx.createGain();
@@ -395,31 +397,26 @@
       osc2.stop(ctx.currentTime + duration);
     }
 
-    // ================= STATE & RESEARCH TELEMETRY =================
+    // ================= STATE & DATA =================
     const NOTES_SOLFEGE = ['Do', 'Do♯', 'Re', 'Re♯', 'Mi', 'Fa', 'Fa♯', 'Sol', 'Sol♯', 'La', 'La♯', 'Si'];
     const NOTES_LETTER  = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 
-    let state = JSON.parse(localStorage.getItem('pianoProState')) || {
+    let state = JSON.parse(localStorage.getItem('conservatorioState')) || {
       xp: 0,
       streak: 1,
       completedLessons: [],
       songsPlayed: 0,
       useSolfege: true,
-      showLabels: true,
       researchLogs: []
     };
 
     function saveState() {
-      localStorage.setItem('pianoProState', JSON.stringify(state));
+      localStorage.setItem('conservatorioState', JSON.stringify(state));
       updateHUD();
     }
 
     function logEvent(type, detail) {
-      state.researchLogs.push({
-        timestamp: new Date().toISOString(),
-        type,
-        detail
-      });
+      state.researchLogs.push({ timestamp: new Date().toISOString(), type, detail });
       if (state.researchLogs.length > 500) state.researchLogs.shift();
       saveState();
     }
@@ -432,30 +429,26 @@
     function getNoteName(midi) {
       const idx = midi % 12;
       const oct = Math.floor(midi / 12) - 1;
-      const name = state.useSolfege ? NOTES_SOLFEGE[idx] : NOTES_LETTER[idx];
-      return `${name}${oct}`;
+      return `${state.useSolfege ? NOTES_SOLFEGE[idx] : NOTES_LETTER[idx]}${oct}`;
     }
 
     function getShortName(midi) {
-      const idx = midi % 12;
-      return state.useSolfege ? NOTES_SOLFEGE[idx] : NOTES_LETTER[idx];
+      return state.useSolfege ? NOTES_SOLFEGE[midi % 12] : NOTES_LETTER[midi % 12];
     }
 
-    // ================= KEYBOARD BUILD (C3=48 to C5=72 -> 25 keys) =================
-    const START_MIDI = 48; // C3 (Left Hand)
-    const END_MIDI = 72;   // C5 (Right Hand)
+    // ================= KEYBOARD BUILD (C3=48 to F5=77 -> 30 keys) =================
+    const START_MIDI = 48; // C3
+    const END_MIDI = 77;   // F5
     const KBD_MAP = {
-      // Lower octave (Left hand: Z X C V B N M + sharps S D G H J)
       'KeyZ': 48, 'KeyS': 49, 'KeyX': 50, 'KeyD': 51, 'KeyC': 52, 'KeyV': 53,
       'KeyG': 54, 'KeyB': 55, 'KeyH': 56, 'KeyN': 57, 'KeyJ': 58, 'KeyM': 59,
-      // Upper octave (Right hand: Q W E R T Y U I + sharps 2 3 5 6 7)
       'KeyQ': 60, 'Digit2': 61, 'KeyW': 62, 'Digit3': 63, 'KeyE': 64, 'KeyR': 65,
       'Digit5': 66, 'KeyT': 67, 'Digit6': 68, 'KeyY': 69, 'Digit7': 70, 'KeyU': 71, 'KeyI': 72
     };
     const MIDI_TO_KEY = Object.fromEntries(Object.entries(KBD_MAP).map(([k, v]) => [v, k.replace('Key','').replace('Digit','')]));
 
     const keyElements = {};
-    const keyPositions = {}; // For falling notes alignment
+    const keyPositions = {};
 
     function buildKeyboard() {
       const kb = document.getElementById('keyboard');
@@ -469,15 +462,12 @@
         const el = document.createElement('div');
         el.className = 'key-white';
         el.dataset.midi = midi;
-        el.innerHTML = `
-          ${state.showLabels ? `<span class="kbd-shortcut">${MIDI_TO_KEY[midi] || ''}</span><span>${getShortName(midi)}</span>` : ''}
-        `;
+        el.innerHTML = `<span class="kbd-shortcut">${MIDI_TO_KEY[midi] || ''}</span><span>${getShortName(midi)}</span>`;
         attachKeyEvents(el, midi);
         kb.appendChild(el);
         keyElements[midi] = el;
       });
 
-      // Black keys
       const totalWhite = whiteNotes.length;
       let whiteIdx = 0;
       for (let midi = START_MIDI; midi <= END_MIDI; midi++) {
@@ -489,10 +479,10 @@
           const el = document.createElement('div');
           el.className = 'key-black';
           el.dataset.midi = midi;
-          const leftPercent = (whiteIdx / totalWhite) * 100 - 2.6;
+          const leftPercent = (whiteIdx / totalWhite) * 100 - 2.2;
           el.style.left = `${leftPercent}%`;
           keyPositions[midi] = whiteIdx / totalWhite;
-          el.innerHTML = state.showLabels ? `<span class="kbd-shortcut">${MIDI_TO_KEY[midi] || ''}</span>` : '';
+          el.innerHTML = `<span class="kbd-shortcut">${MIDI_TO_KEY[midi] || ''}</span>`;
           attachKeyEvents(el, midi);
           kb.appendChild(el);
           keyElements[midi] = el;
@@ -501,14 +491,8 @@
     }
 
     function attachKeyEvents(el, midi) {
-      const press = (e) => {
-        e.preventDefault();
-        triggerNoteOn(midi, 'touch/mouse');
-      };
-      const release = (e) => {
-        e.preventDefault();
-        triggerNoteOff(midi);
-      };
+      const press = (e) => { e.preventDefault(); triggerNoteOn(midi, 'ui'); };
+      const release = (e) => { e.preventDefault(); triggerNoteOff(midi); };
       el.addEventListener('mousedown', press);
       el.addEventListener('mouseup', release);
       el.addEventListener('mouseleave', release);
@@ -517,39 +501,27 @@
     }
 
     const activePressed = new Set();
-
-    function triggerNoteOn(midi, source = 'ui') {
+    function triggerNoteOn(midi) {
       if (activePressed.has(midi)) return;
       activePressed.add(midi);
-      playTone(midi, 0.9);
+      playTone(midi, 0.8);
       if (keyElements[midi]) keyElements[midi].classList.add('active');
       document.getElementById('activeNoteDisplay').textContent = `Nota: ${getNoteName(midi)}`;
       checkLessonInput(midi);
       checkSongHit(midi);
+      checkEarInput(midi);
     }
-
     function triggerNoteOff(midi) {
       activePressed.delete(midi);
       if (keyElements[midi]) keyElements[midi].classList.remove('active');
     }
 
-    window.addEventListener('keydown', (e) => {
-      if (e.repeat) return;
-      const midi = KBD_MAP[e.code];
-      if (midi) triggerNoteOn(midi, 'keyboard');
-    });
-    window.addEventListener('keyup', (e) => {
-      const midi = KBD_MAP[e.code];
-      if (midi) triggerNoteOff(midi);
-    });
+    window.addEventListener('keydown', (e) => { if (!e.repeat && KBD_MAP[e.code]) triggerNoteOn(KBD_MAP[e.code]); });
+    window.addEventListener('keyup', (e) => { if (KBD_MAP[e.code]) triggerNoteOff(KBD_MAP[e.code]); });
 
-    // ================= WEB MIDI (REAL PIANO SUPPORT) =================
     async function initMIDI() {
       const statusEl = document.getElementById('midiStatus');
-      if (!navigator.requestMIDIAccess) {
-        statusEl.textContent = '⚠️ MIDI no soportado aquí';
-        return;
-      }
+      if (!navigator.requestMIDIAccess) return;
       try {
         const midiAccess = await navigator.requestMIDIAccess();
         let count = 0;
@@ -557,120 +529,35 @@
           count++;
           input.onmidimessage = (msg) => {
             const [cmd, note, vel] = msg.data;
-            if (cmd === 144 && vel > 0) triggerNoteOn(note, 'midi');
+            if (cmd === 144 && vel > 0) triggerNoteOn(note);
             else if (cmd === 128 || (cmd === 144 && vel === 0)) triggerNoteOff(note);
           };
         }
-        if (count > 0) {
-          statusEl.textContent = `🎹 MIDI Conectado (${count})`;
-          statusEl.classList.add('connected');
-        } else {
-          statusEl.textContent = '🔌 Sin piano USB detectado';
-        }
-      } catch (err) {
-        statusEl.textContent = '⚠️ Permiso MIDI denegado';
-      }
+        if (count > 0) { statusEl.textContent = `🎹 MIDI (${count})`; statusEl.classList.add('connected'); }
+      } catch (err) {}
     }
 
-    // ================= CURRICULUM: THEORY + BOTH HANDS =================
+    // ================= CURRICULUM (THEORY + BOTH HANDS) =================
     const LESSONS = [
-      {
-        id: 'l1',
-        tag: 'theory',
-        tagText: 'Teoría 1 · Orientación',
-        title: '1. Ubicando el Do Central (Mano Derecha)',
-        desc: 'El Do central está justo a la izquierda del grupo de 2 teclas negras. Toca: Do4 - Re4 - Mi4 - Fa4 - Sol4.',
-        steps: [
-          { notes: [60], hand: 'right' },
-          { notes: [62], hand: 'right' },
-          { notes: [64], hand: 'right' },
-          { notes: [65], hand: 'right' },
-          { notes: [67], hand: 'right' }
-        ]
-      },
-      {
-        id: 'l2',
-        tag: 'theory',
-        tagText: 'Teoría 2 · Intervalos',
-        title: '2. Tonos y Semitonos: La Escala Mayor',
-        desc: 'Una escala mayor sigue la fórmula Tono-Tono-Semitono-Tono-Tono-Tono-Semitono. Completa la octava de Do4 a Do5.',
-        steps: [
-          { notes: [60], hand: 'right' }, { notes: [62], hand: 'right' }, { notes: [64], hand: 'right' },
-          { notes: [65], hand: 'right' }, { notes: [67], hand: 'right' }, { notes: [69], hand: 'right' },
-          { notes: [71], hand: 'right' }, { notes: [72], hand: 'right' }
-        ]
-      },
-      {
-        id: 'l3',
-        tag: 'theory',
-        tagText: 'Teoría 3 · Armonía',
-        title: '3. Tu Primer Acorde Mayor (Triada)',
-        desc: 'Un acorde mayor une la 1ª, 3ª y 5ª nota. Presiona juntas: Do4 + Mi4 + Sol4.',
-        steps: [
-          { notes: [60, 64, 67], hand: 'right' },
-          { notes: [65, 69, 72], hand: 'right' }
-        ]
-      },
-      {
-        id: 'l4',
-        tag: 'hands',
-        tagText: 'Ambas Manos · Nivel 1',
-        title: '4. Despertando la Mano Izquierda',
-        desc: 'La mano izquierda lleva los bajos (zona azul). Alterna bajo en Do3 y Sol3 mientras la derecha responde en Mi4.',
-        steps: [
-          { notes: [48], hand: 'left' },
-          { notes: [64], hand: 'right' },
-          { notes: [55], hand: 'left' },
-          { notes: [64], hand: 'right' }
-        ]
-      },
-      {
-        id: 'l5',
-        tag: 'hands',
-        tagText: 'Ambas Manos · Coordinación',
-        title: '5. Acompañamiento + Melodía Simultánea',
-        desc: 'Toca el bajo con la izquierda (Do3) AL MISMO TIEMPO que la melodía con la derecha (Mi4 y Sol4).',
-        steps: [
-          { notes: [48, 64], hand: 'both' },
-          { notes: [48, 67], hand: 'both' },
-          { notes: [53, 69], hand: 'both' },
-          { notes: [55, 67], hand: 'both' }
-        ]
-      },
-      {
-        id: 'l6',
-        tag: 'theory',
-        tagText: 'Teoría 4 · Inversiones',
-        title: '6. Inversiones para Cambiar Rápido',
-        desc: 'En lugar de saltar toda la mano, sube el Do4 arriba: toca Mi4 + Sol4 + Do5 (1ª inversión de Do Mayor).',
-        steps: [
-          { notes: [60, 64, 67], hand: 'right' },
-          { notes: [64, 67, 72], hand: 'right' }
-        ]
-      }
+      { id: 'l1', tag: 'theory', tagText: 'Teoría 1', title: '1. Teclado y Posición de Manos', desc: 'Conoce la disposición de teclas blancas y negras. Toca Do4, Re4 y Mi4 con la mano derecha.', steps: [{notes:[60],hand:'right'},{notes:[62],hand:'right'},{notes:[64],hand:'right'}]},
+      { id: 'l2', tag: 'theory', tagText: 'Teoría 2', title: '2. Intervalos de Tercera', desc: 'Los intervalos son la base de los acordes. Toca Do4 y Mi4 simultáneamente.', steps: [{notes:[60,64],hand:'right'}]},
+      { id: 'l3', tag: 'hands', tagText: 'Ambas Manos', title: '3. Independencia Básica (Bajo + Melodía)', desc: 'La mano izquierda marca el bajo en Do3 mientras la derecha toca notas agudas.', steps: [{notes:[48],hand:'left'},{notes:[64],hand:'right'},{notes:[55],hand:'left'},{notes:[67],hand:'right'}]},
+      { id: 'l4', tag: 'theory', tagText: 'Armonía', title: '4. Triadas Mayores y Menores', desc: 'Comprende la diferencia armónica tocando Do Mayor (Do-Mi-Sol) y Do Menor (Do-Mi♭-Sol).', steps: [{notes:[60,64,67],hand:'right'},{notes:[60,63,67],hand:'right'}]},
+      { id: 'l5', tag: 'hands', tagText: 'Técnica Pro', title: '5. Acompañamiento en Bloque', desc: 'Toca el acorde completo con la izquierda al tiempo que la derecha lleva el ritmo.', steps: [{notes:[48,64,67],hand:'both'},{notes:[53,65,69],hand:'both'}]}
     ];
 
     let activeLesson = null;
     let currentStepIdx = 0;
 
     function renderLessons() {
-      const container = document.getElementById('lessonsList');
-      container.innerHTML = LESSONS.map(l => {
-        const done = state.completedLessons.includes(l.id);
-        return `
-          <div class="card">
-            <div class="card-header">
-              <span class="tag ${l.tag}">${l.tagText}</span>
-              <span>${done ? '✅ Completada' : '⭐ +50 XP'}</span>
-            </div>
-            <h3 style="font-size:1rem;margin-bottom:4px;">${l.title}</h3>
-            <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:12px;">${l.desc}</p>
-            <button class="${done ? '' : 'primary'}" onclick="startLesson('${l.id}')">
-              ${done ? 'Practicar de nuevo' : 'Comenzar Lección'}
-            </button>
-          </div>
-        `;
-      }).join('');
+      document.getElementById('lessonsList').innerHTML = LESSONS.map(l => `
+        <div class="card">
+          <div class="card-header"><span class="tag ${l.tag}">${l.tagText}</span><span>⭐ +50 XP</span></div>
+          <h3 style="font-size:1rem;margin-bottom:4px;">${l.title}</h3>
+          <p style="font-size:0.84rem;color:var(--text-muted);margin-bottom:12px;">${l.desc}</p>
+          <button class="${state.completedLessons.includes(l.id)?'':'primary'}" onclick="startLesson('${l.id}')">${state.completedLessons.includes(l.id)?'Repasar':'Iniciar Lección'}</button>
+        </div>
+      `).join('');
     }
 
     function startLesson(id) {
@@ -680,154 +567,63 @@
       document.getElementById('lessonPanel').classList.add('active');
       document.getElementById('lessonTitle').textContent = activeLesson.title;
       document.getElementById('lessonDesc').textContent = activeLesson.desc;
-      document.getElementById('lessonFeedback').textContent = '';
       highlightLessonStep();
     }
 
-    function closeLesson() {
-      activeLesson = null;
-      clearKeyHints();
-      document.getElementById('lessonPanel').classList.remove('active');
-    }
-
-    function clearKeyHints() {
-      Object.values(keyElements).forEach(el => {
-        el.classList.remove('hint-right', 'hint-left');
-      });
-    }
+    function closeLesson() { activeLesson = null; clearKeyHints(); document.getElementById('lessonPanel').classList.remove('active'); }
+    function clearKeyHints() { Object.values(keyElements).forEach(el => el.classList.remove('hint-right', 'hint-left')); }
 
     function highlightLessonStep() {
       clearKeyHints();
       if (!activeLesson) return;
       const step = activeLesson.steps[currentStepIdx];
-      step.notes.forEach(m => {
-        const el = keyElements[m];
-        if (!el) return;
-        if (m < 60) el.classList.add('hint-left');
-        else el.classList.add('hint-right');
-      });
-      const names = step.notes.map(getNoteName).join(' + ');
-      document.getElementById('lessonFeedback').textContent = `Paso ${currentStepIdx + 1}/${activeLesson.steps.length}: Toca [ ${names} ]`;
+      step.notes.forEach(m => keyElements[m]?.classList.add(m < 60 ? 'hint-left' : 'hint-right'));
+      document.getElementById('lessonFeedback').textContent = `Paso ${currentStepIdx + 1}/${activeLesson.steps.length}: Toca [ ${step.notes.map(getNoteName).join(' + ')} ]`;
     }
 
-    function resetLessonStep() {
-      currentStepIdx = 0;
-      highlightLessonStep();
-    }
-
-    function playLessonDemo() {
-      if (!activeLesson) return;
-      activeLesson.steps.forEach((step, idx) => {
-        setTimeout(() => {
-          step.notes.forEach(m => playTone(m, 0.55));
-        }, idx * 650);
-      });
-    }
+    function resetLessonStep() { currentStepIdx = 0; highlightLessonStep(); }
+    function playLessonDemo() { activeLesson?.steps.forEach((s, i) => setTimeout(() => s.notes.forEach(m => playTone(m, 0.6)), i * 600)); }
 
     function checkLessonInput(midi) {
       if (!activeLesson) return;
       const step = activeLesson.steps[currentStepIdx];
-      const allPressed = step.notes.every(req => activePressed.has(req));
-      if (allPressed) {
-        logEvent('lesson_step_success', { lessonId: activeLesson.id, step: currentStepIdx });
+      if (step.notes.every(req => activePressed.has(req))) {
         currentStepIdx++;
         if (currentStepIdx >= activeLesson.steps.length) {
-          document.getElementById('lessonFeedback').textContent = '🎉 ¡Lección dominada! +50 XP';
-          if (!state.completedLessons.includes(activeLesson.id)) {
-            state.completedLessons.push(activeLesson.id);
-          }
+          document.getElementById('lessonFeedback').textContent = '🎉 ¡Lección completada! +50 XP';
+          if (!state.completedLessons.includes(activeLesson.id)) state.completedLessons.push(activeLesson.id);
           addXP(50);
-          logEvent('lesson_completed', { lessonId: activeLesson.id });
           renderLessons();
-          setTimeout(closeLesson, 1400);
-        } else {
-          setTimeout(highlightLessonStep, 220);
-        }
-      } else if (!step.notes.includes(midi)) {
-        logEvent('lesson_mistake', { lessonId: activeLesson.id, expected: step.notes, played: midi });
+          setTimeout(closeLesson, 1300);
+        } else { setTimeout(highlightLessonStep, 200); }
       }
     }
 
-    // ================= FALLING NOTES SONG ENGINE =================
+    // ================= SONGS DATABASE =================
     const SONGS = [
-      {
-        id: 's1',
-        title: 'Oda a la Alegría (Beethoven)',
-        level: 'Principiante · Mano Derecha',
-        notes: [
-          { t: 1, m: 64, d: 0.8 }, { t: 2, m: 64, d: 0.8 }, { t: 3, m: 65, d: 0.8 }, { t: 4, m: 67, d: 0.8 },
-          { t: 5, m: 67, d: 0.8 }, { t: 6, m: 65, d: 0.8 }, { t: 7, m: 64, d: 0.8 }, { t: 8, m: 62, d: 0.8 },
-          { t: 9, m: 60, d: 0.8 }, { t: 10, m: 60, d: 0.8 }, { t: 11, m: 62, d: 0.8 }, { t: 12, m: 64, d: 0.8 },
-          { t: 13, m: 64, d: 1.2 }, { t: 14.5, m: 62, d: 0.5 }, { t: 15, m: 62, d: 1.5 }
-        ]
-      },
-      {
-        id: 's2',
-        title: 'Estrellita Dónde Estás',
-        level: 'Principiante · Saltos de 5ª',
-        notes: [
-          { t: 1, m: 60, d: 0.8 }, { t: 2, m: 60, d: 0.8 }, { t: 3, m: 67, d: 0.8 }, { t: 4, m: 67, d: 0.8 },
-          { t: 5, m: 69, d: 0.8 }, { t: 6, m: 69, d: 0.8 }, { t: 7, m: 67, d: 1.5 },
-          { t: 9, m: 65, d: 0.8 }, { t: 10, m: 65, d: 0.8 }, { t: 11, m: 64, d: 0.8 }, { t: 12, m: 64, d: 0.8 },
-          { t: 13, m: 62, d: 0.8 }, { t: 14, m: 62, d: 0.8 }, { t: 15, m: 60, d: 1.5 }
-        ]
-      },
-      {
-        id: 's3',
-        title: 'Progresión Pop (Ambas Manos)',
-        level: 'Intermedio · Bajo + Melodía',
-        notes: [
-          { t: 1, m: 48, d: 1.8 }, { t: 1, m: 64, d: 0.8 }, { t: 2, m: 67, d: 0.8 },
-          { t: 3, m: 55, d: 1.8 }, { t: 3, m: 62, d: 0.8 }, { t: 4, m: 67, d: 0.8 },
-          { t: 5, m: 57, d: 1.8 }, { t: 5, m: 60, d: 0.8 }, { t: 6, m: 64, d: 0.8 },
-          { t: 7, m: 53, d: 1.8 }, { t: 7, m: 60, d: 0.8 }, { t: 8, m: 65, d: 0.8 }
-        ]
-      },
-      {
-        id: 's4',
-        title: 'Minueto en Sol (Bach - Adaptación)',
-        level: 'Intermedio · Ambas Manos',
-        notes: [
-          { t: 1, m: 55, d: 1.5 }, { t: 1, m: 67, d: 0.8 }, { t: 2, m: 60, d: 0.5 }, { t: 2.5, m: 62, d: 0.5 },
-          { t: 3, m: 64, d: 0.5 }, { t: 3.5, m: 65, d: 0.5 }, { t: 4, m: 67, d: 0.8 }, { t: 4, m: 52, d: 1.5 },
-          { t: 5, m: 60, d: 0.8 }, { t: 6, m: 60, d: 0.8 }, { t: 7, m: 69, d: 0.8 }, { t: 7, m: 53, d: 1.5 }
-        ]
-      }
+      { id: 's1', title: 'Oda a la Alegría (Beethoven)', level: 'Principiante', notes: [{t:1,m:64,d:0.8},{t:2,m:64,d:0.8},{t:3,m:65,d:0.8},{t:4,m:67,d:0.8},{t:5,m:67,d:0.8},{t:6,m:65,d:0.8},{t:7,m:64,d:0.8},{t:8,m:62,d:0.8},{t:9,m:60,d:0.8},{t:10,m:60,d:0.8},{t:11,m:62,d:0.8},{t:12,m:64,d:0.8},{t:13,m:64,d:1.2},{t:14.5,m:62,d:0.5},{t:15,m:62,d:1.5}] },
+      { id: 's2', title: 'Estrellita Dónde Estás', level: 'Principiante', notes: [{t:1,m:60,d:0.8},{t:2,m:60,d:0.8},{t:3,m:67,d:0.8},{t:4,m:67,d:0.8},{t:5,m:69,d:0.8},{t:6,m:69,d:0.8},{t:7,m:67,d:1.5},{t:9,m:65,d:0.8},{t:10,m:65,d:0.8},{t:11,m:64,d:0.8},{t:12,m:64,d:0.8},{t:13,m:62,d:0.8},{t:14,m:62,d:0.8},{t:15,m:60,d:1.5}] },
+      { id: 's3', title: 'Para Elisa (Intro - Beethoven)', level: 'Intermedio', notes: [{t:1,m:76,d:0.5},{t:1.3,m:75,d:0.5},{t:1.6,m:76,d:0.5},{t:1.9,m:75,d:0.5},{t:2.2,m:76,d:0.5},{t:2.5,m:71,d:0.5},{t:2.8,m:74,d:0.5},{t:3.1,m:72,d:0.5},{t:3.5,m:69,d:1}] },
+      { id: 's4', title: 'Gymnopédie No. 1 (Satie)', level: 'Avanzado', notes: [{t:1,m:65,d:1.8},{t:1,m:53,d:1.8},{t:3,m:69,d:1.8},{t:3,m:57,d:1.8},{t:5,m:72,d:1.8},{t:5,m:60,d:1.8}] }
     ];
 
     function renderSongs() {
-      const container = document.getElementById('songsList');
-      container.innerHTML = SONGS.map(s => `
+      document.getElementById('songsList').innerHTML = SONGS.map(s => `
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <span class="tag song">${s.level}</span>
-            <h3 style="font-size:1rem;margin-top:6px;">${s.title}</h3>
-          </div>
+          <div><span class="tag song">${s.level}</span><h3 style="font-size:1rem;margin-top:4px;">${s.title}</h3></div>
           <button class="primary" onclick="startSong('${s.id}')">▶ Tocar</button>
         </div>
       `).join('');
     }
 
-    let currentSong = null;
-    let songStartTime = 0;
-    let songPaused = false;
-    let songScore = 0;
-    let songNotesRuntime = [];
-    let animFrameId = null;
+    let currentSong = null, songStartTime = 0, songPaused = false, songScore = 0, songNotesRuntime = [], animFrameId = null;
 
     function startSong(id) {
       closeLesson();
       currentSong = SONGS.find(s => s.id === id);
       const speed = parseFloat(document.getElementById('speedSelect').value);
-      songNotesRuntime = currentSong.notes.map(n => ({
-        ...n,
-        tScaled: (n.t + 1.5) / speed,
-        dScaled: n.d / speed,
-        hit: false
-      }));
-      songScore = 0;
-      songPaused = false;
-      songStartTime = performance.now();
+      songNotesRuntime = currentSong.notes.map(n => ({...n, tScaled: (n.t+1.5)/speed, dScaled: n.d/speed, hit:false}));
+      songScore = 0; songPaused = false; songStartTime = performance.now();
       document.getElementById('songHudTitle').textContent = `🎵 ${currentSong.title}`;
       document.getElementById('scoreHud').textContent = 'Pts: 0';
       document.getElementById('gameContainer').classList.add('active');
@@ -835,141 +631,120 @@
       loopSong();
     }
 
-    function togglePauseSong() {
-      songPaused = !songPaused;
-      if (!songPaused) loopSong();
-    }
-
-    function stopSong() {
-      currentSong = null;
-      if (animFrameId) cancelAnimationFrame(animFrameId);
-      document.getElementById('gameContainer').classList.remove('active');
-    }
+    function togglePauseSong() { songPaused = !songPaused; if (!songPaused) loopSong(); }
+    function stopSong() { currentSong = null; if (animFrameId) cancelAnimationFrame(animFrameId); document.getElementById('gameContainer').classList.remove('active'); }
 
     function checkSongHit(midi) {
       if (!currentSong || songPaused) return;
       const elapsed = (performance.now() - songStartTime) / 1000;
-      const target = songNotesRuntime.find(n => !n.hit && n.m === midi && Math.abs(n.tScaled - elapsed) < 0.45);
-      if (target) {
-        target.hit = true;
-        songScore += 100;
-        document.getElementById('scoreHud').textContent = `Pts: ${songScore}`;
-      }
+      const target = songNotesRuntime.find(n => !n.hit && n.m === midi && Math.abs(n.tScaled - elapsed) < 0.5);
+      if (target) { target.hit = true; songScore += 100; document.getElementById('scoreHud').textContent = `Pts: ${songScore}`; }
     }
 
     function loopSong() {
       if (!currentSong || songPaused) return;
       const canvas = document.getElementById('noteCanvas');
       const c = canvas.getContext('2d');
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-
+      canvas.width = canvas.clientWidth; canvas.height = canvas.clientHeight;
       const elapsed = (performance.now() - songStartTime) / 1000;
-      const lookAhead = 2.6; // seconds visible
+      const lookAhead = 2.5;
 
       c.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Hit line at bottom
-      c.fillStyle = 'rgba(255,255,255,0.15)';
-      c.fillRect(0, canvas.height - 6, canvas.width, 6);
+      c.fillStyle = 'rgba(255,255,255,0.15)'; c.fillRect(0, canvas.height - 6, canvas.width, 6);
 
       let remaining = 0;
       songNotesRuntime.forEach(n => {
         const dt = n.tScaled - elapsed;
         if (dt > -0.5) remaining++;
         if (dt <= lookAhead && dt >= -0.3 && !n.hit) {
-          const xNorm = keyPositions[n.m] || 0.5;
-          const x = xNorm * canvas.width - 12;
+          const x = (keyPositions[n.m] || 0.5) * canvas.width - 12;
           const y = (1 - dt / lookAhead) * (canvas.height - 10);
           const h = Math.max(18, (n.dScaled / lookAhead) * canvas.height * 0.7);
-
           c.fillStyle = n.m < 60 ? '#00d2d3' : '#ff9f43';
-          c.beginPath();
-          c.roundRect(x, y - h, 24, h, 6);
-          c.fill();
-
-          c.fillStyle = '#000';
-          c.font = 'bold 10px sans-serif';
-          c.fillText(getShortName(n.m), x + 4, y - 5);
+          c.beginPath(); c.roundRect(x, y - h, 24, h, 6); c.fill();
         }
       });
 
       if (remaining === 0) {
-        state.songsPlayed++;
-        addXP(40);
-        logEvent('song_finished', { songId: currentSong.id, score: songScore });
-        alert(`🎉 ¡Canción completada! Puntuación: ${songScore} (+40 XP)`);
-        stopSong();
-        return;
+        state.songsPlayed++; addXP(50);
+        alert(`🎉 ¡Pieza completada! Puntos: ${songScore} (+50 XP)`);
+        stopSong(); return;
       }
-
       animFrameId = requestAnimationFrame(loopSong);
     }
 
-    // ================= CHORD & INVERSION EXPLORER =================
+    // ================= EAR TRAINING & RHYTHMS =================
+    let earTargetMidi = null;
+    function startEarTraining() {
+      ensureAudio();
+      const pool = [60, 62, 64, 65, 67, 69, 71, 72];
+      earTargetMidi = pool[Math.floor(Math.random() * pool.length)];
+      document.getElementById('earFeedback').textContent = '🔊 Escucha la nota misteriosa...';
+      playTone(earTargetMidi, 1.2);
+      setTimeout(() => { document.getElementById('earFeedback').textContent = '🎹 ¡Toca la nota que escuchaste en el teclado!'; }, 1000);
+    }
+
+    function checkEarInput(midi) {
+      if (!earTargetMidi) return;
+      if (midi === earTargetMidi) {
+        document.getElementById('earFeedback').textContent = '✅ ¡Correcto! Oído afinado (+30 XP)';
+        addXP(30);
+        earTargetMidi = null;
+      } else {
+        document.getElementById('earFeedback').textContent = '❌ Intenta de nuevo. Vuelve a escuchar si lo necesitas.';
+      }
+    }
+
+    const RHYTHMS = [
+      { name: 'Balada Pop (Arpegio 4/4)', desc: 'Mano izquierda toca: Fundamental en tiempo 1, Quinta en tiempo 2, Tercera en tiempo 3 y se repite. Ideal para canciones emotivas.' },
+      { name: 'Rock & Roll (Bajo Caminante)', desc: 'Alterna rápidamente entre la fundamental y la sexta/séptima con un ritmo alegre de corcheas.' },
+      { name: 'Bossa Nova (Sincopado)', desc: 'Patrón latino sofisticado donde el bajo entra a contratiempo creando un groove único.' },
+      { name: 'Vals Tradicional (3/4)', desc: 'Bajo en el tiempo 1, y acordes en bloque en el tiempo 2 y 3 (Bum-Cha-Cha).' }
+    ];
+
+    function initRhythms() {
+      document.getElementById('rhythmChips').innerHTML = RHYTHMS.map((r, i) => `
+        <button class="chip ${i===0?'selected':''}" onclick="selectRhythm(${i}, this)">${r.name}</button>
+      `).join('');
+      document.getElementById('rhythmDesc').textContent = RHYTHMS[0].desc;
+    }
+
+    function selectRhythm(idx, btn) {
+      document.querySelectorAll('#rhythmChips .chip').forEach(c => c.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('rhythmDesc').textContent = RHYTHMS[idx].desc;
+    }
+
+    // ================= CHORDS & EXPLORER =================
     const CHORD_TYPES = [
       { id: 'maj', name: 'Mayor', intervals: [0, 4, 7] },
       { id: 'min', name: 'Menor', intervals: [0, 3, 7] },
       { id: '7',   name: 'Séptima (7)', intervals: [0, 4, 7, 10] },
-      { id: 'm7',  name: 'Menor 7', intervals: [0, 3, 7, 10] },
       { id: 'sus4',name: 'Sus4', intervals: [0, 5, 7] }
     ];
-    let selectedRoot = 0;
-    let selectedType = CHORD_TYPES[0];
-    let selectedInv = 0;
+    let selectedRoot = 0, selectedType = CHORD_TYPES[0], selectedInv = 0;
 
     function initChordExplorer() {
-      const rootDiv = document.getElementById('rootChips');
-      NOTES_SOLFEGE.forEach((n, idx) => {
-        const b = document.createElement('button');
-        b.className = `chip ${idx === 0 ? 'selected' : ''}`;
-        b.textContent = state.useSolfege ? n : NOTES_LETTER[idx];
-        b.onclick = () => {
-          selectedRoot = idx;
-          document.querySelectorAll('#rootChips .chip').forEach(x => x.classList.remove('selected'));
-          b.classList.add('selected');
-          updateChordDisplay();
-        };
-        rootDiv.appendChild(b);
-      });
-
-      const typeDiv = document.getElementById('typeChips');
-      CHORD_TYPES.forEach((t, idx) => {
-        const b = document.createElement('button');
-        b.className = `chip ${idx === 0 ? 'selected' : ''}`;
-        b.textContent = t.name;
-        b.onclick = () => {
-          selectedType = t;
-          document.querySelectorAll('#typeChips .chip').forEach(x => x.classList.remove('selected'));
-          b.classList.add('selected');
-          updateChordDisplay();
-        };
-        typeDiv.appendChild(b);
-      });
-
-      const invDiv = document.getElementById('invChips');
-      ['Fundamental', '1ª Inversión', '2ª Inversión'].forEach((label, idx) => {
-        const b = document.createElement('button');
-        b.className = `chip ${idx === 0 ? 'selected' : ''}`;
-        b.textContent = label;
-        b.onclick = () => {
-          selectedInv = idx;
-          document.querySelectorAll('#invChips .chip').forEach(x => x.classList.remove('selected'));
-          b.classList.add('selected');
-          updateChordDisplay();
-        };
-        invDiv.appendChild(b);
-      });
-
+      document.getElementById('rootChips').innerHTML = NOTES_SOLFEGE.map((n, i) => `
+        <button class="chip ${i===0?'selected':''}" onclick="selectedRoot=${i}; highlightChip('#rootChips', this); updateChordDisplay();">${state.useSolfege?n:NOTES_LETTER[i]}</button>
+      `).join('');
+      document.getElementById('typeChips').innerHTML = CHORD_TYPES.map((t, i) => `
+        <button class="chip ${i===0?'selected':''}" onclick="selectedType=CHORD_TYPES[${i}]; highlightChip('#typeChips', this); updateChordDisplay();">${t.name}</button>
+      `).join('');
+      document.getElementById('invChips').innerHTML = ['Fundamental', '1ª Inversión', '2ª Inversión'].map((l, i) => `
+        <button class="chip ${i===0?'selected':''}" onclick="selectedInv=${i}; highlightChip('#invChips', this); updateChordDisplay();">${l}</button>
+      `).join('');
       updateChordDisplay();
+    }
+
+    function highlightChip(selector, btn) {
+      document.querySelectorAll(`${selector} .chip`).forEach(c => c.classList.remove('selected'));
+      btn.classList.add('selected');
     }
 
     function getCurrentChordMidis() {
       let midis = selectedType.intervals.map(iv => 60 + selectedRoot + iv);
-      for (let i = 0; i < selectedInv; i++) {
-        midis[0] += 12;
-        midis.sort((a, b) => a - b);
-      }
+      for (let i = 0; i < selectedInv; i++) { midis[0] += 12; midis.sort((a,b)=>a-b); }
       return midis;
     }
 
@@ -979,83 +754,42 @@
       const rootName = state.useSolfege ? NOTES_SOLFEGE[selectedRoot] : NOTES_LETTER[selectedRoot];
       document.getElementById('chordNameDisplay').textContent = `${rootName} ${selectedType.name}`;
       document.getElementById('chordNotesDisplay').textContent = `Notas: ${midis.map(getShortName).join(' - ')}`;
-      midis.forEach(m => {
-        if (keyElements[m]) keyElements[m].classList.add('hint-right');
-      });
+      midis.forEach(m => keyElements[m]?.classList.add('hint-right'));
     }
 
     function playCurrentChord(arpeggio) {
-      const midis = getCurrentChordMidis();
-      midis.forEach((m, i) => {
-        setTimeout(() => playTone(m, 0.9), arpeggio ? i * 240 : 0);
-      });
+      getCurrentChordMidis().forEach((m, i) => setTimeout(() => playTone(m, 0.9), arpeggio ? i * 220 : 0));
     }
 
-    // ================= METRONOME & SETTINGS =================
-    let metroInterval = null;
-    function toggleMetronome() {
-      const lbl = document.getElementById('metroLabel');
-      if (metroInterval) {
-        clearInterval(metroInterval);
-        metroInterval = null;
-        lbl.textContent = 'OFF';
-      } else {
-        lbl.textContent = 'ON (90 BPM)';
-        metroInterval = setInterval(() => playTone(84, 0.06), 666);
-      }
+    // ================= HUD & EXPORT =================
+    function updateHUD() {
+      const level = Math.floor(state.xp / 120) + 1;
+      document.getElementById('streakVal').textContent = state.streak;
+      document.getElementById('lvlVal').textContent = level;
+      document.getElementById('xpVal').textContent = state.xp;
+      document.getElementById('xpBar').style.width = `${state.xp % 120}%`;
+
+      const achs = [
+        { title: '🎹 Iniciado', desc: '1 Lección', ok: state.completedLessons.length >= 1 },
+        { title: '🎧 Oído Fino', desc: 'Entrenamiento', ok: state.xp >= 30 },
+        { title: '🎵 Pianista', desc: '1 Pieza tocada', ok: state.songsPlayed >= 1 },
+        { title: '⭐ Virtuoso', desc: '300+ XP', ok: state.xp >= 300 }
+      ];
+      document.getElementById('achievementsGrid').innerHTML = achs.map(a => `
+        <div class="ach-card ${a.ok ? 'unlocked' : ''}"><strong>${a.title}</strong><br/><span>${a.desc}</span></div>
+      `).join('');
     }
 
     function toggleNotation() {
       state.useSolfege = !state.useSolfege;
       document.getElementById('notationLabel').textContent = state.useSolfege ? 'Do Re Mi' : 'C D E';
-      buildKeyboard();
-      updateChordDisplay();
-      saveState();
-    }
-
-    function toggleLabels() {
-      state.showLabels = !state.showLabels;
-      document.getElementById('labelsLabel').textContent = state.showLabels ? 'Visibles' : 'Ocultas';
-      buildKeyboard();
-      saveState();
-    }
-
-    // ================= GAMIFICATION HUD & RESEARCH EXPORT =================
-    function updateHUD() {
-      const level = Math.floor(state.xp / 100) + 1;
-      const progress = state.xp % 100;
-      document.getElementById('streakVal').textContent = state.streak;
-      document.getElementById('lvlVal').textContent = level;
-      document.getElementById('xpVal').textContent = state.xp;
-      document.getElementById('xpBar').style.width = `${progress}%`;
-
-      const achs = [
-        { title: '🎹 Primer Paso', desc: 'Completa 1 lección', ok: state.completedLessons.length >= 1 },
-        { title: '👐 Ambas Manos', desc: 'Completa la lección 5', ok: state.completedLessons.includes('l5') },
-        { title: '🎵 Melómano', desc: 'Toca 1 canción completa', ok: state.songsPlayed >= 1 },
-        { title: '🔥 Dedicación', desc: 'Alcanza 200 XP', ok: state.xp >= 200 }
-      ];
-      document.getElementById('achievementsGrid').innerHTML = achs.map(a => `
-        <div class="ach-card ${a.ok ? 'unlocked' : ''}">
-          <strong>${a.title}</strong><br/><span>${a.desc}</span>
-        </div>
-      `).join('');
+      buildKeyboard(); updateChordDisplay(); saveState();
     }
 
     function exportResearchData() {
       const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `piano-facil-estudio-${Date.now()}.json`;
-      a.click();
-    }
-
-    function resetAllProgress() {
-      if (confirm('¿Seguro que deseas reiniciar tu XP, lecciones y registros?')) {
-        localStorage.removeItem('pianoProState');
-        location.reload();
-      }
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = `conservatorio-data-${Date.now()}.json`; a.click();
     }
 
     function switchTab(tabId, btn) {
@@ -1071,6 +805,7 @@
     buildKeyboard();
     renderLessons();
     renderSongs();
+    initRhythms();
     initChordExplorer();
     updateHUD();
   </script>
