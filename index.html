@@ -41,41 +41,18 @@
             padding-bottom: 12px;
             margin-bottom: 16px;
         }
-        .content-card {
+        .section-card {
             background: var(--bg-main);
             padding: 16px;
             border-radius: 12px;
             margin-bottom: 16px;
-            min-height: 260px;
             border: 1px solid var(--border-color);
         }
-        .nav-bottom {
-            display: flex;
-            justify-content: space-around;
-            background: var(--bg-main);
-            padding: 10px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        .nav-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 12px;
-            transition: color 0.2s;
-        }
-        .nav-btn.active {
-            color: var(--accent-blue);
-            font-weight: bold;
-        }
-        h2 { margin-top: 0; font-size: 1.25rem; color: var(--accent-blue); }
-        h3 { font-size: 1.05rem; color: var(--accent-green); margin-bottom: 6px; }
-        ul { padding-left: 18px; font-size: 0.92rem; line-height: 1.5; }
-        li { margin-bottom: 8px; }
+        h2 { margin-top: 0; font-size: 1.2rem; color: var(--accent-blue); border-bottom: 1px solid var(--border-color); padding-bottom: 6px; }
+        h3 { font-size: 1.05rem; color: var(--accent-green); margin-top: 12px; margin-bottom: 6px; }
+        ul { padding-left: 18px; font-size: 0.92rem; line-height: 1.5; margin-bottom: 0; }
+        li { margin-bottom: 6px; }
+        p { font-size: 0.92rem; line-height: 1.4; color: var(--text-muted); }
         .badge {
             background: var(--border-color);
             padding: 4px 10px;
@@ -98,90 +75,83 @@
         <!-- Cabecera -->
         <div class="header">
             <div>
-                <h1 style="margin: 0; font-size: 1.4rem;">🎹 Piano Fácil Pro</h1>
+                <h1 style="margin: 0; font-size: 1.3rem;">🎹 Piano Fácil Pro</h1>
                 <span style="font-size: 0.8rem; color: var(--text-muted);">Curso Completo & Cancionero</span>
             </div>
             <div style="display: flex; gap: 8px; align-items: center;">
                 <span class="badge">🔥 1</span>
-                <span class="badge-lvl">Nv 1</span>
+                <span class="badge-lvl">Nv 1-5</span>
             </div>
         </div>
 
-        <!-- Contenido Dinámico Principal -->
-        <div id="vista-principal" class="content-card">
-            <h2>📚 Camino de Aprendizaje (Curso Nv. 1 al 5)</h2>
-            <p>Ruta estructurada para dominar el teclado paso a paso:</p>
+        <!-- SECCIÓN 1: CURSO COMPLETO -->
+        <div class="section-card">
+            <h2>📚 Curso Completo (Niveles 1 al 5)</h2>
+            
+            <h3>Nivel 1: Fundamentos</h3>
             <ul>
-                <li><b>Nivel 1 (Fundamentos):</b> Postura, Teclas Negras, Cifrado Americano y Dedos (1-5).</li>
-                <li><b>Nivel 2 (Armonía):</b> Inversiones de acordes y Voice Leading (Enlaces suaves).</li>
-                <li><b>Nivel 3 (Ritmo):</b> Compases (4/4, 3/4), bloques vs arpegios y síncopas tropicales.</li>
-                <li><b>Nivel 4 (Improvisación):</b> Escalas Mayores, Pentatónicas y acompañamientos.</li>
-                <li><b>Nivel 5 (Avanzado):</b> Acordes Extendidos (9as), Modulaciones y Pedal de Sustain.</li>
+                <li><b>Postura y Manos:</b> Posición correcta en la banqueta y curvatura de los dedos (1 al 5).</li>
+                <li><b>Teclas Negras:</b> Reconocimiento de los grupos de 2 y 3 negras para orientarse.</li>
+                <li><b>Cifrado Americano:</b> Letras universales ($\text{C}, \text{D}, \text{E}, \text{F}, \text{G}, \text{A}, \text{B}$).</li>
+            </ul>
+
+            <h3>Nivel 2: Inversiones y Armonía</h3>
+            <ul>
+                <li><b>Inversiones de Acordes:</b> Tocar tríadas moviendo la nota inferior arriba para ahorrar movimiento.</li>
+                <li><b>Voice Leading:</b> Enlaces suaves entre acordes de una progresión.</li>
+            </ul>
+
+            <h3>Nivel 3: Ritmo y Síncopas</h3>
+            <ul>
+                <li><b>Compases de 4/4 y 3/4:</b> El pulso y la marcación rítmica fundamental.</li>
+                <li><b>Acompañamiento Tropical:</b> Patrones de mano izquierda para cumbia y pop bailable.</li>
+            </ul>
+
+            <h3>Nivel 4: Improvisación y Escalas</h3>
+            <ul>
+                <li><b>Escala Mayor:</b> Patrón de tonos y semitonos ($\text{T-T-S-T-T-T-S}$).</li>
+                <li><b>Pentatónicas:</b> Las 5 notas infalibles para crear melodías sin errores.</li>
+            </ul>
+
+            <h3>Nivel 5: Avanzado y Expresión</h3>
+            <ul>
+                <li><b>Acordes Extendidos:</b> Novenas ($\text{9}$) y séptimas mayores ($\text{maj7}$).</li>
+                <li><b>Uso del Pedal de Sustain:</b> Cuándo pisar y levantar para limpiar la armonía.</li>
             </ul>
         </div>
 
-        <!-- Barra de Navegación Inferior -->
-        <div class="nav-bottom">
-            <button class="nav-btn active" onclick="cambiarVista('camino', this)">
-                <span style="font-size: 18px;">🗺️</span> Camino
-            </button>
-            <button class="nav-btn" onclick="cambiarVista('canciones', this)">
-                <span style="font-size: 18px;">🎵</span> Canciones
-            </button>
-            <button class="nav-btn" onclick="cambiarVista('oido', this)">
-                <span style="font-size: 18px;">👂</span> Oído y Tips
-            </button>
-            <button class="nav-btn" onclick="cambiarVista('profesor', this)">
-                <span style="font-size: 18px;">🤖</span> Tutor IA
-            </button>
+        <!-- SECCIÓN 2: CANCIONERO AMPLIADO -->
+        <div class="section-card">
+            <h2>🎵 Cancionero Ampliado</h2>
+            
+            <h3>🇦🇷 Cumbia Argentina</h3>
+            <p style="margin: 4px 0;">• <b>"Una Cerveza" (Ráfaga)</b> — Tonalidad: Am ($\text{Am} - \text{Dm} - \text{G} - \text{C}$)</p>
+            <p style="margin: 4px 0;">• <b>"No Te Creas Tan Importante" (Damas Gratis)</b> — Tonalidad: C ($\text{C} - \text{Am} - \text{F} - \text{G}$)</p>
+            
+            <h3 style="margin-top: 12px;">🎸 Rock Nacional y Pop</h3>
+            <p style="margin: 4px 0;">• <b>"De Música Ligera" (Soda Stereo)</b> — Tonalidad: Bm ($\text{Bm} - \text{G} - \text{D} - \text{A}$)</p>
+            <p style="margin: 4px 0;">• <b>"Let It Be" (The Beatles)</b> — Tonalidad: C ($\text{F} - \text{C} - \text{G} - \text{Am}$)</p>
         </div>
+
+        <!-- SECCIÓN 3: ENTRENAMIENTO AUDITIVO Y TIPS -->
+        <div class="section-card">
+            <h2>👂 Entrenamiento Auditivo y Tips Pro</h2>
+            <ul>
+                <li><b>Reconocimiento de Intervalos:</b> Distingue de oído saltos de segundas, terceras y quintas.</li>
+                <li><b>Colores de Acordes:</b> Identifica la alegría del Mayor y la melancolía del Menor.</li>
+                <li><b>Tip de Práctica:</b> <i>"La velocidad nace de la relajación."</i> Practica siempre lento con metrónomo antes de acelerar.</li>
+            </ul>
+        </div>
+
+        <!-- SECCIÓN 4: PROFESOR VIRTUAL -->
+        <div class="section-card" style="margin-bottom: 0;">
+            <h2>🤖 Profesor Virtual (Tutor IA)</h2>
+            <p>Tu asistente 24/7 para resolver dudas de teoría, digitación o inversiones.</p>
+            <div style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 10px;">
+                <p style="color: var(--accent-green); margin: 0; font-size: 0.9rem;"><b>Tutor:</b> ¡Hola! Estoy aquí para ayudarte. ¿Qué lección o canción te gustaría repasar hoy o qué duda tienes con tus acordes?</p>
+            </div>
+        </div>
+
     </div>
-
-    <script>
-        function cambiarVista(vista, elemento) {
-            // Actualizar botones activos
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            elemento.classList.add('active');
-
-            const contenedor = document.getElementById('vista-principal');
-
-            if (vista === 'camino') {
-                contenedor.innerHTML = `
-                    <h2>📚 Camino de Aprendizaje (Curso Nv. 1 al 5)</h2>
-                    <p>Ruta estructurada para dominar el teclado paso a paso:</p>
-                    <ul>
-                        <li><b>Nivel 1 (Fundamentos):</b> Postura, Teclas Negras, Cifrado Americano y Dedos (1-5).</li>
-                        <li><b>Nivel 2 (Armonía):</b> Inversiones de acordes y Voice Leading (Enlaces suaves).</li>
-                        <li><b>Nivel 3 (Ritmo):</b> Compases (4/4, 3/4), bloques vs arpegios y síncopas tropicales.</li>
-                        <li><b>Nivel 4 (Improvisación):</b> Escalas Mayores, Pentatónicas y acompañamientos.</li>
-                        <li><b>Nivel 5 (Avanzado):</b> Acordes Extendidos (9as), Modulaciones y Pedal de Sustain.</li>
-                    </ul>`;
-            } else if (vista === 'canciones') {
-                contenedor.innerHTML = `
-                    <h2>🎵 Cancionero Ampliado</h2>
-                    <h3>🇦🇷 Cumbia Argentina</h3>
-                    <p style="margin: 4px 0;">• <b>"Una Cerveza" (Ráfaga)</b> — Tonalidad: Am (Am - Dm - G - C)</p>
-                    <p style="margin: 4px 0;">• <b>"No Te Creas Tan Importante" (Damas Gratis)</b> — Tonalidad: C (C - Am - F - G)</p>
-                    <h3 style="margin-top: 12px;">🎸 Rock Nacional y Pop</h3>
-                    <p style="margin: 4px 0;">• <b>"De Música Ligera" (Soda Stereo)</b> — Tonalidad: Bm (Bm - G - D - A)</p>
-                    <p style="margin: 4px 0;">• <b>"Let It Be" (The Beatles)</b> — Tonalidad: C (F - C - G - Am)</p>`;
-            } else if (vista === 'oido') {
-                contenedor.innerHTML = `
-                    <h2>👂 Entrenamiento Auditivo y Tips Pro</h2>
-                    <ul>
-                        <li><b>Reconocimiento de Intervalos:</b> Distingue de oído saltos de segundas, terceras y quintas.</li>
-                        <li><b>Colores de Acordes:</b> Identifica la alegría del Mayor y la melancolía del Menor.</li>
-                        <li><b>Tip de Práctica:</b> <i>"La velocidad nace de la relajación."</i> Practica siempre lento con metrónomo antes de acelerar.</li>
-                    </ul>`;
-            } else if (vista === 'profesor') {
-                contenedor.innerHTML = `
-                    <h2>🤖 Profesor Virtual (Tutor IA)</h2>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Tu asistente 24/7 para resolver dudas de teoría, digitación o inversiones.</p>
-                    <div style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 12px;">
-                        <p style="color: var(--accent-green); margin: 0; font-size: 0.9rem;"><b>Tutor:</b> ¡Hola! Estoy aquí para ayudarte. ¿Qué lección o canción te gustaría repasar hoy o qué duda tienes con tus acordes?</p>
-                    </div>`;
-            }
-        }
-    </script>
 </body>
 </html>
